@@ -8,8 +8,8 @@ public class Main {
         JFrame frame = new JFrame();
         ChessGame gameplay = new ChessGame();
 
-        frame.setTitle("Snake");
-        frame.setBounds(300, 20, 905, 700);
+        frame.setTitle("Chess Game");
+        frame.setBounds(300, 20, 700, 700);
         frame.setResizable(false);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
