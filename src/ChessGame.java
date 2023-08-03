@@ -8,9 +8,12 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 public class ChessGame extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
+
+
     public static LinkedList<Piece> ps = new LinkedList<>();
     public static Piece selectedPiece = null;
 
+    public static int state = 0;
 
     Piece brook = new Piece(0, 0, false, "rook", ps);
     Piece bkinght = new Piece(1, 0, false, "knight", ps);
@@ -131,17 +134,6 @@ public class ChessGame extends JPanel implements ActionListener, MouseMotionList
 
     }
 
-
-    @Override
-    public synchronized void addMouseListener(MouseListener l) {
-        super.addMouseListener(l);
-    }
-
-    @Override
-    public synchronized void addMouseMotionListener(MouseMotionListener l) {
-        super.addMouseMotionListener(l);
-    }
-
     @Override
     public void mouseDragged(MouseEvent e) {
 
@@ -157,7 +149,12 @@ public class ChessGame extends JPanel implements ActionListener, MouseMotionList
     public void mouseMoved(MouseEvent e) {}
     @Override
     public void mouseClicked(MouseEvent e) {
+
         System.out.println("Tutaj jestem!!!");
+        System.out.println(state);
+
+        state = 1;
+
     }
     @Override
     public void mousePressed(MouseEvent e) {
@@ -182,8 +179,11 @@ public class ChessGame extends JPanel implements ActionListener, MouseMotionList
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        repaint();
+        if(state == 1){
 
+        }
+
+        repaint();
     }
 
 
