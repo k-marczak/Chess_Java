@@ -71,6 +71,12 @@ public class Board extends JPanel {
             return false;
         }
 
+        if(move.piece.moveCollidesWithPiece(move.newCol, move.newRow)){
+            return false;
+        }
+
+
+
         return true;
     }
 
