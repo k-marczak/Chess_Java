@@ -20,6 +20,9 @@ public class Piece {
     public int value;
 
 
+    public boolean isFirstMove = true;
+
+
     Image sprite;
 
     Board board;
