@@ -22,6 +22,8 @@ public class Board extends JPanel {
 
     Input input = new Input(this);
 
+    Check check = new Check(this);
+
 
     public int enPassantTile = -1;
 
@@ -132,6 +134,9 @@ public class Board extends JPanel {
         }
 
         if(move.piece.moveCollidesWithPiece(move.newCol, move.newRow)){
+            return false;
+        }
+        if(check.isKingChecked(move)){
             return false;
         }
 
