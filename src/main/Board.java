@@ -155,6 +155,15 @@ public class Board extends JPanel {
 
 
 
+    Piece findKing(boolean isWhite) {
+        for(Piece piece: pieceList){
+            if(isWhite == piece.isWhite && piece.name.equals("King")){
+                return piece;
+            }
+        }
+        return null;
+    }
+
 
     public void addPieces() {
         pieceList.add(new Rook(this, 0, 0, false));
