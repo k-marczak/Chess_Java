@@ -22,7 +22,7 @@ public class Board extends JPanel {
 
     Input input = new Input(this);
 
-    Check check = new Check(this);
+    public Check check = new Check(this);
 
 
     public int enPassantTile = -1;
@@ -48,6 +48,22 @@ public class Board extends JPanel {
         return null;
     }
 
+    private void moveKing(Move move) {
+        if(Math.abs(move.piece.col - move.newCol) == 2) {
+            Piece rook;
+            if(move.piece.col < move.newCol) {
+                rook = getPiece(7, move.piece.row);
+                rook.col = 5;
+            } else {
+                rook = getPiece(0, move.piece.row);
+                rook.col = 3;
+            }
+            rook.xPos = rook.col * tileSize;
+        }
+    }
+
+
+
 
     public void makeMove(Move move) {
 
@@ -55,7 +71,10 @@ public class Board extends JPanel {
 
         if(move.piece.name.equals("Pawn")){
             movePawn(move);
-        }else {
+        }else if(move.piece.name.equals("King")) {
+            moveKing((move));
+        }
+
             move.piece.col = move.newCol;
             move.piece.row = move.newRow;
             move.piece.xPos = move.newCol * tileSize;
@@ -65,16 +84,14 @@ public class Board extends JPanel {
             move.piece.isFirstMove = false;
 
             capture(move.capture);
-        }
+
     }
 
 
     public void movePawn(Move move){
 
-
-
         //en passant
-        int colorIndex = move.piece.isFirstMove ? 1 : -1;
+        int colorIndex = move.piece.isWhite ? 1 : -1;
 
         if(getTileNum(move.newCol, move.newRow) == enPassantTile){
             move.capture = getPiece(move.newCol, move.newRow + colorIndex);
@@ -96,19 +113,6 @@ public class Board extends JPanel {
         }
 
 
-
-
-
-
-        move.piece.col = move.newCol;
-        move.piece.row = move.newRow;
-        move.piece.xPos = move.newCol * tileSize;
-        move.piece.yPos = move.newRow * tileSize;
-
-
-        move.piece.isFirstMove = false;
-
-        capture(move.capture);
 
     }
 
